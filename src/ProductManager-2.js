@@ -1,6 +1,4 @@
-// Desafio entregable CoderHouse, de Eduardo Mercado Sanhueza
-const fs = require("fs");
-
+import fs from "fs"
 class ProductManager {
   product;
   static id = 0;
@@ -40,16 +38,17 @@ class ProductManager {
     }
   }
 
-  async Addproducts(title, description, price, thumbnail, id, stock) {
+  async Addproducts(title, description, price, thumbnail, id, stock, status) {
     try {
+      await this.loadProductsFromFile(this.path);
       const existProduct = this.product.find((product) => product.id === id);
       if (existProduct) {
         console.log(`Error: El código "${id}" ya está en uso.`);
         return;
       }
-      if (!title || !description || !price || !thumbnail || !id || !stock) {
+      if (!title || !description || !price || !thumbnail || !id || !stock || !status) {
         console.log("Error: Todos los campos son obligatorios.");
-        return;
+        return
       }
       const product = {
         title,
@@ -58,6 +57,9 @@ class ProductManager {
         thumbnail,
         id,
         stock,
+        status,
+        // code,
+        // category,
       };
 
       this.product.push(product);
@@ -84,7 +86,7 @@ class ProductManager {
   async deleteProduct(id) {
     try {
       const data = await this.getProducts();
-      const updatedData = data.filter((product) => product.id !== id);
+      const updatedData = data.splice((product) => product.id !== id);
 
       if (updatedData.length !== data.length) {
         const data = updatedData;
@@ -113,5 +115,5 @@ class ProductManager {
     }
   }
 }
-module.exports = ProductManager;
 
+export default ProductManager

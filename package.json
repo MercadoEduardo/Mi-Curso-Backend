@@ -1,6 +1,7 @@
 {
   "name": "Curso-Backend",
   "version": "1.0.0",
+  "type": "module",
   "description": "",
   "main": "App.js",
   "scripts": {
