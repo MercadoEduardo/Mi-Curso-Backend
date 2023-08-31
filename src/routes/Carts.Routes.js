@@ -31,29 +31,23 @@ router.get("/:cid", async (req, res) => {
 });
 
 router.post("/:cid/product/:pid", async (req, res) => {
-  const cid = parseInt(req.params.cid, 10);
-  const pid = parseInt(req.params.pid, 10);
-  const quantity = parseInt(req.body.quantity || 1, 10);
-  const carritos = [];
+  try {
+    const cartId = parseInt(req.params.cid, 10);
+    const productId = parseInt(req.params.pid, 10);
+    const quantity = parseInt(req.body.quantity, 10);
 
-  let carrito = carritos.find((cart) => cart.id === cid);
-  if (!carrito) {
-    carrito = {
-      id: cid,
-      products: [],
-    };
-    carritos.push(carrito);
-    // return res.status(404).json({ message: "El carrito no existe." });
+    let cart = await managerCart.getCartById(cartId);
+    if (!cart) {
+      cart = await managerCart.createCart();
+    }
+
+    await managerCart.addToCart(cartId, quantity, productId);
+
+    res.status(200).json({ message: "Producto agregado al carrito con éxito" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Error interno del servidor" });
   }
-
-  const product = productManager.getProductById(pid);
-  if (!product) {
-    return res.status(404).json({ error: "Product not found" });
-  }
-
-  managerCart.addToCart(pid, quantity);
-
-  res.status(200).json({ message: "Producto agregado al carrito.", product });
 });
 
 export default router;
