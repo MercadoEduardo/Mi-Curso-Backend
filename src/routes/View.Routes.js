@@ -14,8 +14,8 @@ router.post("/", async (req, res) => {
     const id = req.body.id;
     const stock = req.body.stock;
     const status = req.body.status;
-    // const code = req.body.code;
-    // const category = req.body.category;
+    const code = req.body.code;
+    const category = req.body.category;
 
     productManager.Addproducts(
       title,
@@ -24,9 +24,9 @@ router.post("/", async (req, res) => {
       thumbnail,
       id,
       stock,
-      status
-      // code,
-      // category,
+      status,
+      code,
+      category,
     );
 
     res.status(201).send("Producto agregado correctamente");

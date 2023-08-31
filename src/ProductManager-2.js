@@ -46,7 +46,7 @@ class ProductManager {
         console.log(`Error: El código "${id}" ya está en uso.`);
         return;
       }
-      if (!title || !description || !price || !thumbnail || !id || !stock || !status) {
+      if (!title || !description || !price || !thumbnail || !id || !stock || !status || !code || !category) {
         console.log("Error: Todos los campos son obligatorios.");
         return
       }
@@ -58,8 +58,8 @@ class ProductManager {
         id,
         stock,
         status,
-        // code,
-        // category,
+        code,
+        category,
       };
 
       this.product.push(product);
