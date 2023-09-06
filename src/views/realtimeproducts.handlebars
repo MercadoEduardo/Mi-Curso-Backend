@@ -1,0 +1,46 @@
+{{!-- <h1>Lista de productos</h1>
+
+{{#each products}}
+
+<p>{{this.title}}</p>
+
+{{/each}} --}}
+
+
+<h1>Crea tu producto!</h1>
+
+<form id="productForm" action="" method="POST">
+    <label for="productTitle">Título del Producto:</label>
+    <input type="text" id="productTitle" name="productTitle" required>
+
+    <label for="productDescription">Descripción del Producto:</label>
+    <input type="text" id="productDescription" name="productDescription" required>
+
+    <label for="productPrice">Precio del Producto:</label>
+    <input type="text" id="productPrice" name="productPrice" required>
+
+    <label for="producThumbnail">Imagen del Producto:</label>
+    <input type="text" id="producThumbnail" name="producThumbnail" required>
+
+    <label for="productId">Id del Producto:</label>
+    <input type="number" id="productId" name="productId" required>
+
+    <label for="productStock">Stock del Producto:</label>
+    <input type="number" id="productStock" name="productStock" required>
+
+    <label for="productState">Estado del Producto:</label>
+    <input type="text" id="productState" name="productState" required>
+
+    <label for="productCode">Codigo del Producto:</label>
+    <input type="number" id="productCode" name="productCode" required>
+
+    <label for="productCategory">Categoria del Producto:</label>
+    <input type="text" id="productCategory" name="productCategory" required>
+
+    <input type="submit" value="Guardar Producto">
+</form>
+
+
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/index.js"></script>
