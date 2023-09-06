@@ -26,8 +26,12 @@ router.post("/", async (req, res) => {
       stock,
       status,
       code,
-      category,
+      category
     );
+
+    const products =
+      (await productManager.getProducts()) +
+      req.context.socketServer.emit("Put_products", products);
 
     res.status(201).send("Producto agregado correctamente");
   } catch (error) {
@@ -73,11 +77,12 @@ router.delete("/:productid", async (req, res) => {
 
   try {
     await productManager.deleteProduct(productId);
-    res
-      .status(200)
-      .json({
-        message: `Producto con ID (${productId}) eliminado correctamente`,
-      });
+
+    req.context.socketServer.emit("Put_products", products);
+
+    res.status(200).json({
+      message: `Producto con ID (${productId}) eliminado correctamente`,
+    });
   } catch (error) {
     console.error(`Ocurrió un error: ${error}`);
     res.status(500).json({ error: "Ocurrió un error al eliminar el producto" });
