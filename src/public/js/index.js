@@ -1,19 +1,5 @@
 const socket = io();
 
-// const productContainer = document.getElementById("product");
-
-// socket.on("products", (products) => {
-//   const title = products.map((product) => product.title);
-
-//   productContainer.innerHTML = title.join("<br></br>");
-// });
-
-// socket.on("Put_products", (products) => {
-//   const title = products.map((product) => product.title);
-
-//   productContainer.innerHTML = title.join("<br></br>");
-// });
-
 const productContainer = document.getElementById("product");
 
 document.getElementById("productForm").addEventListener("submit", (e) => {
