@@ -17,11 +17,16 @@ const httpServer = app.listen(port, () => {
 const socketServer = new Server(httpServer);
 const productManager = new ProductManager();
 
+app.use((req, res, next) => {
+  req.context = { socketServer };
+  next();
+});
+
 socketServer.on('connection', async (socket) => {
-  console.log("Cliente conectado", socket.id);
+  // console.log("Cliente conectado", socket.id);
   socket.emit('products', await productManager.getProducts())
 
-  socket.on("mensajeDelCliente", (data) => {
+  socket.on("connection", (data) => {
     console.log("Mensaje del cliente:", data);
   });
 
@@ -32,16 +37,11 @@ socketServer.on('connection', async (socket) => {
 
 app.use(express.json());
 app.use(urlencoded({ extended: true }));
-app.use(express.static('public')); 
+app.use(express.static(__dirname + '/public'));
 
 app.engine("handlebars", handlebars.engine());
 app.set("views", __dirname + "/views");
 app.set("view engine", "handlebars");
-
-app.use((req, res, next) => {
-  req.context = { socketServer };
-  next();
-});
 
 app.use("/api/products", Routerproducts);
 app.use("/api/carts", CartsCreateProduct);

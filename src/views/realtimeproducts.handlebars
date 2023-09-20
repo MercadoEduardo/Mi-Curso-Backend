@@ -1,14 +1,15 @@
-{{!-- <h1>Lista de productos</h1>
+<h1>Lista de productos</h1>
 
 {{#each products}}
 
 <p>{{this.title}}</p>
 
-{{/each}} --}}
+{{/each}} 
 
 
 <h1>Crea tu producto!</h1>
 
+<div id="product">
 <form id="productForm" action="" method="POST">
     <label for="productTitle">Título del Producto:</label>
     <input type="text" id="productTitle" name="productTitle" required>
@@ -39,8 +40,7 @@
 
     <input type="submit" value="Guardar Producto">
 </form>
-
-
+</div>
 
 <script src="/socket.io/socket.io.js"></script>
 <script src="/js/index.js"></script>

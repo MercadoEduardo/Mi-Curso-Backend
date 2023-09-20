@@ -82,5 +82,49 @@
 		"id": 11,
 		"stock": 11,
 		"status": true
+	},
+	{
+		"title": "Producto 15",
+		"description": "Descripción del producto 15",
+		"price": 15.99,
+		"thumbnail": "sin imagen",
+		"id": 15,
+		"stock": 15,
+		"status": true,
+		"code": "1515",
+		"category": "sin"
+	},
+	{
+		"title": "Producto 16",
+		"description": "Descripción del producto 16",
+		"price": 16.99,
+		"thumbnail": "sin imagen",
+		"id": 16,
+		"stock": 16,
+		"status": true,
+		"code": "1616",
+		"category": "sin"
+	},
+	{
+		"title": "Producto 17",
+		"description": "Descripción del producto 17",
+		"price": 17.99,
+		"thumbnail": "sin imagen",
+		"id": 17,
+		"stock": 17,
+		"status": true,
+		"code": "1717",
+		"category": "sin"
+	},
+	{
+		"title": "Producto 18",
+		"description": "Descripción del producto 18",
+		"price": 18.99,
+		"thumbnail": "sin imagen",
+		"id": 18,
+		"stock": 18,
+		"status": true,
+		"code": "1818",
+		"category": "sin"
 	}
 ]
