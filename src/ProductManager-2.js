@@ -38,7 +38,7 @@ class ProductManager {
     }
   }
 
-  async Addproducts(title, description, price, thumbnail, id, stock, status) {
+  async Addproducts(title, description, price, thumbnail, id, stock, status, code, category) {
     try {
       await this.loadProductsFromFile(this.path);
       const existProduct = this.product.find((product) => product.id === id);
@@ -106,8 +106,6 @@ class ProductManager {
 
       product.id = id;
       data.splice(i, 1, product);
-
-      await fs.promises.writeFile(this.path, JSON.stringify(data));
 
       console.log("Producto actualizado con exito");
     } catch (error) {

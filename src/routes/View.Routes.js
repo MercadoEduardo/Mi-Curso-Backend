@@ -1,4 +1,3 @@
-import express from "express";
 import { Router } from "express";
 import ProductManager from "../ProductManager-2.js";
 
@@ -12,6 +11,17 @@ router.get("/", async (req, res) => {
 });
 
 router.get("/realtimeproducts", async (req, res) => {
+  try {
+    req.context.socketServer.emit(); 
+    const products = await productManager.getProducts();
+    res.render("realtimeproducts", { products });
+  } catch (error) {
+    console.error("Error en la ruta '/realtimeproducts':", error);
+    res.status(500).send("Ocurrió un error en la solicitud.");
+  }
+});
+
+router.post("/realtimeproducts", async (req, res) => {
   try {
     req.context.socketServer.emit(); 
     const products = await productManager.getProducts();
